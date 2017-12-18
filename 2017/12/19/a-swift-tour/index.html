@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="关于 Swift Swift 是一门为 iOS、OS X 以及 watchOS 应用开发而开发的构建于 C 和 Objective-C 的优点之上的新编程语言。">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Swift Tour Part 01">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/a-swift-tour/index.html">
+<meta property="og:site_name" content="ACSwift&#39;s Blog">
+<meta property="og:description" content="关于 Swift Swift 是一门为 iOS、OS X 以及 watchOS 应用开发而开发的构建于 C 和 Objective-C 的优点之上的新编程语言。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-18T17:32:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Swift Tour Part 01">
+<meta name="twitter:description" content="关于 Swift Swift 是一门为 iOS、OS X 以及 watchOS 应用开发而开发的构建于 C 和 Objective-C 的优点之上的新编程语言。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/19/a-swift-tour/"/>
+
+
+
+
+
+  <title>A Swift Tour Part 01 | ACSwift's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ACSwift's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/a-swift-tour/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="acswift">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ACSwift's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">A Swift Tour Part 01</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T01:32:02+08:00">
+                2017-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关于-Swift"><a href="#关于-Swift" class="headerlink" title="关于 Swift"></a>关于 Swift</h2><blockquote>
+<p>Swift 是一门为 iOS、OS X 以及 watchOS 应用开发而开发的构建于 C 和 Objective-C 的优点之上的新编程语言。</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>它没有 C 的兼容性限制。</li>
+<li>Swift 语言由成熟且倍受喜爱的 Cocoa 和 Cocoa Touch 框架支持，设想一下，这将是一个重新定义软件开发的契机。</li>
+<li>我们使用自动引用计数（ARC）简化了内存管理，我们的框架栈牢牢地打造在 Foundation 和 Cocoa 框架之上，使现代化和标准化贯穿始终。</li>
+<li>Objective-C 语言本身已经支持块、集合以及模块，无中断引入现代语言技术。</li>
+<li>Swift 语言引入了 Objective-C 命名参数的可读性以及其动态对象模型的能力。它提供了无缝访问现存 Cocoa 框架以及与 OC 混合编写的兼容性。</li>
+</ul>
+<h2 id="版本兼容性"><a href="#版本兼容性" class="headerlink" title="版本兼容性"></a>版本兼容性</h2><p>当你使用 Xcode 9 来编译 Swift 3 代码，Swift 4 中的大部分新功能都是可用的。只有如下功能是 Swift 4 代码独享的：</p>
+<ul>
+<li>拆分字符串操作返回 <code>Substring</code> 类型，而不是 <code>String</code> ；</li>
+<li><code>@objc</code> 标签在更少的地方被推断；</li>
+<li>同一文件中类型的扩展可以访问类型中的私有成员。</li>
+</ul>
+<p>用 Swift 4 编写的编译目标可以依赖于用 Swift 3 编写的编译目标，反之亦然。也就是说如果你的项目很大且分成了多个框架，你可以一次从 Swift 3 迁移到 Swift 4 一个框架。</p>
+<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world!"></a>Hello, world!</h2><p>依照传统，使用新语言写的第一个程序都应该是在屏幕上打印 “Hello,world!” ，使用 Swift 语言，你可以在一行中完成。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="string">"Hello, world!"</span>)</div></pre></td></tr></table></figure>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>预期范围内恒定不变的量</p>
+<h3 id="常量的定义"><a href="#常量的定义" class="headerlink" title="常量的定义"></a>常量的定义</h3><ul>
+<li>let 常量名</li>
+<li>常量名可以是任意文字，长度不限</li>
+</ul>
+<h3 id="常量赋值"><a href="#常量赋值" class="headerlink" title="常量赋值"></a>常量赋值</h3><ul>
+<li>给常量一个值，术语叫“赋值”</li>
+<li>形式：let 常量名 = 值</li>
+</ul>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>可主动变更或者可预计期间内自动有规律或者无规律的量，比如清醒时间、风扇转动的总次数、加班时间、股票指数、驾照通过的几率。。。</p>
+<h2 id="代码注释"><a href="#代码注释" class="headerlink" title="代码注释"></a>代码注释</h2><ul>
+<li>有助于自己理解</li>
+<li>便于他人理解</li>
+<li>专业优雅</li>
+</ul>
+<h2 id="如何正确使用常量与变量？"><a href="#如何正确使用常量与变量？" class="headerlink" title="如何正确使用常量与变量？"></a>如何正确使用常量与变量？</h2><ul>
+<li>总是优先使用常量</li>
+<li>交给编译器决定</li>
+</ul>
+<h2 id="值的类型和类型推断"><a href="#值的类型和类型推断" class="headerlink" title="值的类型和类型推断"></a>值的类型和类型推断</h2><ul>
+<li>3 这样的整数，在 Swift 中称为 Integer 类型的值，简写 Int</li>
+<li>形式：var 变量名: Int = 3. 由于 Swift 有类型推断，类型可以省略不写。</li>
+</ul>
+<h2 id="浮点型（小数）"><a href="#浮点型（小数）" class="headerlink" title="浮点型（小数）"></a>浮点型（小数）</h2><ul>
+<li>Swift 中默认浮点型是 Double(双精度)</li>
+</ul>
+<h2 id="类型安全"><a href="#类型安全" class="headerlink" title="类型安全"></a>类型安全</h2><ul>
+<li>变量一旦定义，其类型不可更改，即：不能给变量一个类型不同的值。</li>
+</ul>
+<h2 id="布尔型：Bool-表示逻辑上的真或假"><a href="#布尔型：Bool-表示逻辑上的真或假" class="headerlink" title="布尔型：Bool, 表示逻辑上的真或假"></a>布尔型：Bool, 表示逻辑上的真或假</h2><ul>
+<li>只有 2 个值，true 和 false.</li>
+</ul>
+<h2 id="元组（Tuple）：定义变量的一个组合"><a href="#元组（Tuple）：定义变量的一个组合" class="headerlink" title="元组（Tuple）：定义变量的一个组合"></a>元组（Tuple）：定义变量的一个组合</h2><ul>
+<li>形式（一般）：(3, “day”, “Swift”, “3.0”)</li>
+<li>形式（前缀）：(day: 3, unit: “day”, lang: “Swift”, ver: “3.0”)</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> (x, y, z) = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<h2 id="可选类型（Optional）：代表变量可能有值的情况"><a href="#可选类型（Optional）：代表变量可能有值的情况" class="headerlink" title="可选类型（Optional）：代表变量可能有值的情况"></a>可选类型（Optional）：代表变量可能有值的情况</h2><ul>
+<li>如用户资料的选填部分，如住址/性别等辅助信息</li>
+<li>形式：var 变量: 类型? , 默认是无值（nil）</li>
+</ul>
+<h2 id="基础操作符"><a href="#基础操作符" class="headerlink" title="基础操作符"></a>基础操作符</h2><p>略</p>
+<h2 id="字符串和字符"><a href="#字符串和字符" class="headerlink" title="字符串和字符"></a>字符串和字符</h2><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><ul>
+<li>字符串是有序的字符集合，或者叫文本，如“我已使用量洪荒之力”。</li>
+<li>String 是字符串类型，Character 是字符类型。</li>
+<li>2 个字符串可以通过 + 来连接。</li>
+<li>通过字符串插值可合成一个长字符串。</li>
+<li>空字符串用 <code>&quot;&quot;</code> 表示。</li>
+<li>判断字符串是否为空</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="string">""</span></div><div class="line"><span class="keyword">var</span> b = <span class="string">" "</span></div><div class="line">a.isEmpty</div><div class="line">b.isEmpty</div></pre></td></tr></table></figure>
+<h3 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h3><ul>
+<li>用 <code>Character</code> 类型来定义字符串。</li>
+<li>可以对一个字符串的 <code>characters</code> 属性进行循环，来访问其中单个字符。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> words = <span class="string">"Taylor Swift"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words.characters &#123;</div><div class="line">    <span class="built_in">print</span>(word)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="连接字符串和字符"><a href="#连接字符串和字符" class="headerlink" title="连接字符串和字符"></a>连接字符串和字符</h3><ul>
+<li>用 <code>+</code>。</li>
+<li>向 <strong>字符串</strong> 添加 <strong>字符</strong>，用 <code>append</code> 方法。</li>
+</ul>
+<h3 id="字符串插值：组合常量-变量-字面量-表达式成一个长字符串"><a href="#字符串插值：组合常量-变量-字面量-表达式成一个长字符串" class="headerlink" title="字符串插值：组合常量/变量/字面量/表达式成一个长字符串"></a>字符串插值：组合常量/变量/字面量/表达式成一个长字符串</h3><h2 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h2><p>一组同类型的值的集合，根据组合的整体特性分为：</p>
+<ul>
+<li>有序可重复 - 数组（Array）</li>
+<li>无序不重复 - Set</li>
+<li>无序可重复，但每个值有唯一的键（Key）- 字典（Dictionary）</li>
+<li>批量处理集合中的元素，可以使用 <code>for-in</code> 循环</li>
+</ul>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><ul>
+<li>有序可重复，用于存储同一类型的值</li>
+<li>定义：Array &lt;类型&gt; 或 [类型]</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array: [<span class="type">Int</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>创建一个有默认值的数组</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建了有 10 个 3 的数组</span></div><div class="line">array = [<span class="type">Int</span>](repeatElement(<span class="number">3</span>, <span class="built_in">count</span>: <span class="number">10</span>))</div></pre></td></tr></table></figure>
+<ul>
+<li>创建一个有序范围的[Int]数组，Array(起始值…终止值)</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array2 = <span class="type">Array</span>(<span class="number">0</span>...<span class="number">10</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>用数组字面量来创建数组：[值1，值2，值3，…，值N]</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> places = [<span class="string">"beijing"</span>, <span class="string">"shanghai"</span>, <span class="string">"guangzhou"</span>, <span class="string">"shenzhen"</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>元素计数：count，空否：isEmpty</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">places.<span class="built_in">count</span></div><div class="line">places.isEmpty</div></pre></td></tr></table></figure>
+<ul>
+<li>添加：append，添加一个同类型数组 +=</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> places = [<span class="string">"beijing"</span>, <span class="string">"shanghai"</span>, <span class="string">"guangzhou"</span>, <span class="string">"shenzhen"</span>]</div><div class="line">places.append(<span class="string">"wuhan"</span>)</div><div class="line"><span class="keyword">let</span> haiwaiPlaces = [<span class="string">"NewYork"</span>, <span class="string">"London"</span>, <span class="string">"Sao paolu"</span>]</div><div class="line">places += haiwaiPlaces</div></pre></td></tr></table></figure>
+<ul>
+<li>获取元素：数组名[索引]，索引总是从 0 开始</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">places[<span class="number">7</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>插入：insert</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">places.insert(<span class="string">"Paris"</span>, at: <span class="number">5</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>移除：remove</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">places.remove(at: <span class="number">5</span>)</div></pre></td></tr></table></figure>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
+<li><p>值无序不重复。适合存储具有唯一特性的数据，如用户名/身份证号码/护照号等</p>
+</li>
+<li><p>定义：Set &lt;元素类型&gt;，无法使用类型推断，但可省略类型</p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> cardno: <span class="type">Set</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>用数组字面量创建集合</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cities: <span class="type">Set</span> = [<span class="string">"Shanghai"</span>, <span class="string">"Beijing"</span>, <span class="string">"Wuhan"</span>, <span class="string">"Hef"</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>元素计数：count, 空否：isEmpty</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cities.<span class="built_in">count</span></div><div class="line">cities.isEmpty</div></pre></td></tr></table></figure>
+<ul>
+<li>插入：insert</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cities.insert(<span class="string">"Guangzhou"</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>移除：remove</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cities.remove(<span class="string">"Shanghai"</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>是否包含某元素：contains</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cities.<span class="built_in">contains</span>(<span class="string">"Beijing"</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>转换为数组：sorted</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> cityArray = cities.sorted()</div></pre></td></tr></table></figure>
+<ul>
+<li>集合间的运算：交差并补</li>
+</ul>
+<h4 id="交集-intersection"><a href="#交集-intersection" class="headerlink" title="交集 intersection"></a>交集 intersection</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x: <span class="type">Set</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line"><span class="keyword">let</span> y: <span class="type">Set</span> = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">x.intersection(y)</div></pre></td></tr></table></figure>
+<h4 id="差集-subtract"><a href="#差集-subtract" class="headerlink" title="差集 subtract"></a>差集 subtract</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x: <span class="type">Set</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line"><span class="keyword">let</span> y: <span class="type">Set</span> = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line"><span class="keyword">let</span> z = x.subtract(y)</div></pre></td></tr></table></figure>
+<h4 id="并集-uninon"><a href="#并集-uninon" class="headerlink" title="并集 uninon"></a>并集 uninon</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x: <span class="type">Set</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line"><span class="keyword">let</span> y: <span class="type">Set</span> = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">x.union(y)</div></pre></td></tr></table></figure>
+<h4 id="补集-symmetricDifference"><a href="#补集-symmetricDifference" class="headerlink" title="补集 symmetricDifference"></a>补集 symmetricDifference</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x: <span class="type">Set</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line"><span class="keyword">let</span> y: <span class="type">Set</span> = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">x.symmetricDifference(y)</div></pre></td></tr></table></figure>
+<ul>
+<li>相等：2 个集合有完全相同的元素</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> h: <span class="type">Set</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> i: <span class="type">Set</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">h == i</div></pre></td></tr></table></figure>
+<ul>
+<li>子集：isSubset（可以相等），严格子集 isStrictSubset</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">h.isSubset(of: i)</div><div class="line">h.isStrictSubset(of: i)</div></pre></td></tr></table></figure>
+<ul>
+<li>父集：isSuperset（可以相等），严格父集 isStrictSuperset</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">i.isSuperset(of: h)</div><div class="line">i.isStrictSuperset(of: h)</div></pre></td></tr></table></figure>
+<ul>
+<li>无交集：isDisjoint</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> j: <span class="type">Set</span> = [<span class="string">"游戏"</span>, <span class="string">"动漫"</span>]</div><div class="line"><span class="keyword">let</span> k: <span class="type">Set</span> = [<span class="string">"购物"</span>, <span class="string">"小吃"</span>, <span class="string">"化妆"</span>]</div><div class="line">j.isDisjoint(with: k)</div></pre></td></tr></table></figure>
+<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><ul>
+<li>值无序可重复，但每个值有唯一的键（Key）</li>
+<li>定义：Dictionary&lt;键类型, 值类型&gt;，或[键类型: 值类型]</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, <span class="type">String</span>&gt;</div><div class="line"><span class="keyword">var</span> b: [<span class="type">String</span>: <span class="type">String</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>用字典字面量来创建字典，键与值之间用冒号分开</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> airports = [<span class="string">"PVG"</span>: <span class="string">"Shanghai Pudong"</span>, <span class="string">"CHU"</span>: <span class="string">"Dalian"</span>, <span class="string">"DUB"</span>: <span class="string">"Dublin Airport"</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>计数：count，空否：isEmpty</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">airports.<span class="built_in">count</span></div><div class="line">airports.isEmpty</div></pre></td></tr></table></figure>
+<ul>
+<li>添加或更新：字典变量[键] = 值</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">airports[<span class="string">"SHQ"</span>] = <span class="string">"Hongqiao Airport"</span></div><div class="line">airports[<span class="string">"CHU"</span>] = <span class="string">"大连周水子机场"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>获取，依然可以用下标</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">airports[<span class="string">"DUB"</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>移除：用下标把值设为 <code>nil</code></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">airports[<span class="string">"DUB"</span>] = <span class="literal">nil</span></div></pre></td></tr></table></figure>
+<ul>
+<li>循环一个字典 <code>for-in</code>，因为键值对有 2 个元素，用远组变量</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (key, value) <span class="keyword">in</span> airports &#123;</div><div class="line">    <span class="built_in">print</span>(key, value)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>单独使用其中键或值，使用 Keys 或 Values （可使用 <code>for-in</code>）</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> key <span class="keyword">in</span> airports.keys &#123;</div><div class="line">    <span class="built_in">print</span>(key)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>把键值对分离成数组，用 [数组类型](字典变量.keys)，[数组类型](字典变量.values) </li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> codes = [<span class="type">String</span>](airports.keys)</div><div class="line"><span class="keyword">let</span> airportFullname = [<span class="type">String</span>](airports.values)</div></pre></td></tr></table></figure>
+<h2 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h2><ul>
+<li>用来检查和运算各种条件逻辑和逻辑的组合，控制 APP 的运行流向</li>
+<li>循环语句 <code>for-in</code>, <code>while</code></li>
+<li>if 和循环控制语句</li>
+<li>早退语句 <code>guard else</code></li>
+<li>退出循环语句 <code>break</code>, <code>continue</code></li>
+<li><code>switch</code></li>
+</ul>
+<h3 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for-in 循环"></a><code>for-in</code> 循环</h3><ul>
+<li>执行固定次数的操作，或操作一个序列（如数组）中的每一项</li>
+<li>序列中的每项都参与。<code>for</code> 与 <code>in</code> 之间加一个代替每项的名</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> places = [<span class="string">"beijing"</span>, <span class="string">"shanghai"</span>, <span class="string">"guangzhou"</span>]</div><div class="line"><span class="keyword">for</span> place <span class="keyword">in</span> places &#123;</div><div class="line">    <span class="built_in">print</span>(place)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> sum = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">100</span> &#123;</div><div class="line">    sum += i</div><div class="line">&#125;</div><div class="line"><span class="built_in">print</span>(sum)</div></pre></td></tr></table></figure>
+<ul>
+<li>只需循环固定次数，可以省略项名。比如打印 5 次相同的文本</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Learn Swift!"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a><code>while</code> 循环</h3><ul>
+<li>执行一系列操作，直到条件不成立。使用场合：执行次数未知</li>
+<li>格式：while 条件 {语句}。比如计算 1 到 100 的和。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="number">1</span></div><div class="line">sum = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> i &lt;= <span class="number">100</span> &#123;</div><div class="line">    sum += i</div><div class="line">    i += <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">print</span>(sum)</div><div class="line"></div><div class="line"><span class="keyword">var</span> j = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> j &lt; <span class="number">10</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"while 循环事例"</span>)</div><div class="line">    j += <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="循环中的判断"><a href="#循环中的判断" class="headerlink" title="循环中的判断"></a>循环中的判断</h3><ul>
+<li><code>continue</code> 结束本次循环，<code>break</code> 结束整个循环</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> temp = <span class="number">23</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> temp &gt; <span class="number">25</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"开空调"</span>)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"不开空调"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> money = <span class="literal">false</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> money &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"买车买房"</span>)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"注孤生"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span> &#123;</div><div class="line">    <span class="keyword">if</span> i == <span class="number">3</span> &#123;</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    &#125;</div><div class="line">    <span class="built_in">print</span>(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a><code>switch</code></h3><ul>
+<li><code>switch</code> 语句：超过 2 个以上条件判断的场合</li>
+<li>条件匹配模式</li>
+<li>范围匹配：如根据室外温度来自动调节室内温度的空调</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> temp = <span class="number">30</span></div><div class="line"></div><div class="line"><span class="keyword">switch</span> temp &#123;</div><div class="line"><span class="keyword">case</span> <span class="number">35</span>...<span class="number">40</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"天气非常炎热，强力制冷模式启动"</span>)</div><div class="line"><span class="keyword">case</span> <span class="number">25</span>...<span class="number">34</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"气温不算太热，空调制冷模式启动"</span>)</div><div class="line"><span class="keyword">case</span> <span class="number">19</span>...<span class="number">24</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"除湿模式"</span>)</div><div class="line"><span class="keyword">case</span> <span class="number">0</span>...<span class="number">18</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"制暖模式"</span>)</div><div class="line"><span class="keyword">default</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"室外已经超过本空调的控制范围"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>元组匹配：如某坐标（含 x 和 y 2 个变量）所在象限判断</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 判断坐标是否位于原点，X 轴， Y 轴，或 2 * 2 的坐标区域内</span></div><div class="line"><span class="keyword">let</span> 坐标<span class="number">1</span> = (<span class="number">0</span>, <span class="number">2</span>)</div><div class="line"><span class="keyword">switch</span> 坐标<span class="number">1</span> &#123;</div><div class="line"><span class="keyword">case</span> (<span class="number">0</span>, <span class="number">0</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"原点"</span>)</div><div class="line"><span class="keyword">case</span> (<span class="number">_</span>, <span class="number">0</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"在 X 轴上"</span>)</div><div class="line"><span class="keyword">case</span> (<span class="number">0</span>, <span class="number">_</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"在 Y 轴上"</span>)</div><div class="line"><span class="keyword">case</span> (-<span class="number">2</span>...<span class="number">2</span>, -<span class="number">2</span>...<span class="number">2</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"坐标在 2*2 范围内"</span>)</div><div class="line"><span class="keyword">default</span>:</div><div class="line">    <span class="keyword">break</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>函数是一段代码块和一个会意的名字。用于执行特定的任务</li>
+<li>使用函数叫“调用（call）”</li>
+<li>就像公式一样，使用函数需要提供参数</li>
+<li>函数调用的结果叫返回值</li>
+<li>函数都有类型，包含参数和返回值类型</li>
+</ul>
+<h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><ul>
+<li>形式：<code>func</code> 函数名(参数1:类型, 参数2:类型, …) -&gt; 返回结果的类型 {执行语句}</li>
+<li>调用：<code>var</code> 变量名称 = 函数名(变量1, 变量2, …)</li>
+<li>🌰：加法函数</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(a: Int, b: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> a + b</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> z = add(a: <span class="number">3</span>, b: <span class="number">4</span>)</div></pre></td></tr></table></figure>
+<h3 id="参数和返回值：可以无参数无返回值"><a href="#参数和返回值：可以无参数无返回值" class="headerlink" title="参数和返回值：可以无参数无返回值"></a>参数和返回值：可以无参数无返回值</h3><ul>
+<li>无参数无返回值。一般用于<strong>执行</strong>一系列操作，不需要结果。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">welcome</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"欢迎"</span>)</div><div class="line">    <span class="built_in">print</span>(<span class="string">"学习"</span>)</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Learn Swift!"</span>)</div><div class="line">&#125;</div><div class="line">welcome()</div></pre></td></tr></table></figure>
+<ul>
+<li>多返回值（使用<strong>元组</strong>）</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxMin</span><span class="params">()</span></span> -&gt; (<span class="type">Int</span>, <span class="type">Int</span>) &#123;</div><div class="line">    <span class="keyword">return</span> (<span class="type">Int</span>.<span class="built_in">min</span>, <span class="type">Int</span>.<span class="built_in">max</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">maxMin().<span class="number">0</span></div><div class="line">maxMin().<span class="number">1</span></div></pre></td></tr></table></figure>
+<ul>
+<li>参数以 <code>名称: 类型</code> 列出，多个参数间用逗号分隔</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x:Int, y:Int, z:Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> x + y + z</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>可以给某个参数以<strong>默认值</strong></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add2</span><span class="params">(x: Int, increment: Int = <span class="number">2</span>)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> x + increment</div><div class="line">&#125;</div><div class="line"></div><div class="line">add2(x: <span class="number">3</span>)</div><div class="line">add2(x: <span class="number">3</span>, increment: <span class="number">4</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>函数类型：包含参数和返回类型的简写形式，可以像普通变量那样使用，一般用于函数式编程。🌰(Int, Int) -&gt; Int</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">calculate</span><span class="params">(x: Int, y: Int, method: <span class="params">(Int, Int)</span></span></span> -&gt; <span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> method(x, y)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x: Int, y: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> x + y</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">multiply</span><span class="params">(x: Int, y: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> x * y</div><div class="line">&#125;</div><div class="line"></div><div class="line">calculate(x: <span class="number">1</span>, y: <span class="number">2</span>, method: add)</div><div class="line">calculate(x: <span class="number">1</span>, y: <span class="number">2</span>, method: multiply)</div></pre></td></tr></table></figure>
+<h2 id="闭包-Closure"><a href="#闭包-Closure" class="headerlink" title="闭包 Closure"></a>闭包 Closure</h2><ul>
+<li>闭包是一种函数的简写形式，省去函数名，把参数和返回值放入花括号内</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Closure</span></div><div class="line"><span class="comment">//&#123;(a: Int, b: Int) -&gt; Int</span></div><div class="line"><span class="comment">//    执行语句</span></div><div class="line"><span class="comment">//    return ...</span></div><div class="line"><span class="comment">//&#125;</span></div></pre></td></tr></table></figure>
+<h3 id="闭包表达式"><a href="#闭包表达式" class="headerlink" title="闭包表达式"></a>闭包表达式</h3><ul>
+<li>有时候需要更简洁的使用函数的方式</li>
+<li>尤其是一个函数的某个参数是另一个函数时</li>
+<li>这节主要以 <code>sorted</code> 函数为例</li>
+<li><code>sorted</code> 函数用于对数组排序，只接受一个函数型参数，描述排序逻辑</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cities = [<span class="string">"zhengzhou"</span>, <span class="string">"xiamen"</span>, <span class="string">"hefei"</span>, <span class="string">"nanchang"</span>]</div><div class="line"></div><div class="line"><span class="keyword">var</span> cityRank1 = cities.sorted()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">daoxu</span><span class="params">(x: String, y: String)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">    <span class="keyword">return</span> x &gt; y</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> cityRank2 = cities.sorted(by: daoxu)</div><div class="line"><span class="comment">// 闭包改写</span></div><div class="line"><span class="keyword">var</span> cityRank3 = cities.sorted &#123; (a, b) -&gt; <span class="type">Bool</span> <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> a &gt; b</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="闭包的自动推断"><a href="#闭包的自动推断" class="headerlink" title="闭包的自动推断"></a>闭包的自动推断</h3><ul>
+<li>参数和返回类型可以自动推断，单表达式可以忽略 <code>return</code> 关键词</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cityRank4 = cities.sorted &#123; (a, b) <span class="keyword">in</span></div><div class="line">    a &gt; b</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>可使用快捷参数，前缀 <strong><code>$</code></strong> 从 0 开始递增</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cityRank5 = cities.sorted &#123; $<span class="number">0</span> &gt; $<span class="number">1</span> &#125;</div></pre></td></tr></table></figure>
+<h2 id="枚举-enumeration"><a href="#枚举-enumeration" class="headerlink" title="枚举 enumeration"></a>枚举 enumeration</h2><ul>
+<li>计数、列举（有限的情况）；详细叙述之意。“增强的、更抽象型”的数字类型</li>
+<li>非常强大，与 <code>switch</code> 语句结合使用，天生一对</li>
+</ul>
+<h3 id="定义和使用"><a href="#定义和使用" class="headerlink" title="定义和使用"></a>定义和使用</h3><ul>
+<li>给定一个名称，然后把每一种情况列举出来</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Weather</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> sunny</div><div class="line">    <span class="keyword">case</span> cloudy</div><div class="line">    <span class="keyword">case</span> rainy</div><div class="line">    <span class="keyword">case</span> snow</div><div class="line">    <span class="keyword">case</span> froggy</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用：点语法</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="type">Weather</span>.froggy</div></pre></td></tr></table></figure>
+<ul>
+<li>与 <code>switch</code> 配合使用。如果变量是枚举值，可省略枚举名</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Weather</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> sunny</div><div class="line">    <span class="keyword">case</span> cloudy</div><div class="line">    <span class="keyword">case</span> rainy</div><div class="line">    <span class="keyword">case</span> snow</div><div class="line">    <span class="keyword">case</span> froggy</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> todayWeather = <span class="type">Weather</span>.sunny</div><div class="line"></div><div class="line"><span class="keyword">switch</span> todayWeather &#123;</div><div class="line"><span class="keyword">case</span> .cloudy:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Today is cloudy."</span>)</div><div class="line"><span class="keyword">case</span> .sunny:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Today is sunny."</span>)</div><div class="line"><span class="keyword">case</span> .rainy:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Today is rainy."</span>)</div><div class="line"><span class="keyword">default</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Today's weather is not known."</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="附加值"><a href="#附加值" class="headerlink" title="附加值"></a>附加值</h3><ul>
+<li>赋予附加值：加上元组字面量</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> 精确天气 </span>&#123;</div><div class="line">    <span class="keyword">case</span> 晴(<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">String</span>)</div><div class="line">    <span class="keyword">case</span> 霾(<span class="type">String</span>, <span class="type">Int</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> 上海今日精确天气 = 精确天气.霾(<span class="string">"PM10"</span>, <span class="number">100</span>)</div><div class="line"><span class="keyword">let</span> 北京今日精确天气 = 精确天气.晴(<span class="number">30</span>, <span class="number">50</span>, <span class="string">"湛蓝"</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>取得附加值：用 <code>switch</code> 语句，在 <code>case</code> 中加上元组变量</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> 精确天气 </span>&#123;</div><div class="line">    <span class="keyword">case</span> 晴(<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">String</span>)</div><div class="line">    <span class="keyword">case</span> 霾(<span class="type">String</span>, <span class="type">Int</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> 上海今日精确天气 = 精确天气.霾(<span class="string">"PM10"</span>, <span class="number">100</span>)</div><div class="line"><span class="keyword">let</span> 北京今日精确天气 = 精确天气.晴(<span class="number">30</span>, <span class="number">50</span>, <span class="string">"湛蓝"</span>)</div><div class="line"></div><div class="line"><span class="keyword">switch</span> 北京今日精确天气 &#123;</div><div class="line"><span class="keyword">case</span> .晴(<span class="keyword">let</span> uvi, <span class="keyword">let</span> li, <span class="keyword">let</span> desc):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"紫外线指数："</span>, uvi, <span class="string">"晾晒指数："</span>, li, <span class="string">"天蓝程度："</span>, desc)</div><div class="line"><span class="keyword">case</span> .霾(<span class="keyword">let</span> cat, <span class="keyword">let</span> index):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"雾霾颗粒类别："</span>, cat, <span class="string">"指数"</span>, index)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/28/about-this-blog/" rel="next" title="关于这篇博客的搭建">
+                <i class="fa fa-chevron-left"></i> 关于这篇博客的搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.jpg"
+              alt="acswift" />
+          
+            <p class="site-author-name" itemprop="name">acswift</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/acswift" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-Swift"><span class="nav-number">1.</span> <span class="nav-text">关于 Swift</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本兼容性"><span class="nav-number">2.</span> <span class="nav-text">版本兼容性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-world"><span class="nav-number">3.</span> <span class="nav-text">Hello, world!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">4.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量的定义"><span class="nav-number">4.1.</span> <span class="nav-text">常量的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量赋值"><span class="nav-number">4.2.</span> <span class="nav-text">常量赋值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">5.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码注释"><span class="nav-number">6.</span> <span class="nav-text">代码注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何正确使用常量与变量？"><span class="nav-number">7.</span> <span class="nav-text">如何正确使用常量与变量？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值的类型和类型推断"><span class="nav-number">8.</span> <span class="nav-text">值的类型和类型推断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点型（小数）"><span class="nav-number">9.</span> <span class="nav-text">浮点型（小数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型安全"><span class="nav-number">10.</span> <span class="nav-text">类型安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔型：Bool-表示逻辑上的真或假"><span class="nav-number">11.</span> <span class="nav-text">布尔型：Bool, 表示逻辑上的真或假</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元组（Tuple）：定义变量的一个组合"><span class="nav-number">12.</span> <span class="nav-text">元组（Tuple）：定义变量的一个组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选类型（Optional）：代表变量可能有值的情况"><span class="nav-number">13.</span> <span class="nav-text">可选类型（Optional）：代表变量可能有值的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础操作符"><span class="nav-number">14.</span> <span class="nav-text">基础操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串和字符"><span class="nav-number">15.</span> <span class="nav-text">字符串和字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">15.1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符"><span class="nav-number">15.2.</span> <span class="nav-text">字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接字符串和字符"><span class="nav-number">15.3.</span> <span class="nav-text">连接字符串和字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串插值：组合常量-变量-字面量-表达式成一个长字符串"><span class="nav-number">15.4.</span> <span class="nav-text">字符串插值：组合常量/变量/字面量/表达式成一个长字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合类型"><span class="nav-number">16.</span> <span class="nav-text">集合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">16.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合"><span class="nav-number">16.2.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交集-intersection"><span class="nav-number">16.2.1.</span> <span class="nav-text">交集 intersection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#差集-subtract"><span class="nav-number">16.2.2.</span> <span class="nav-text">差集 subtract</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并集-uninon"><span class="nav-number">16.2.3.</span> <span class="nav-text">并集 uninon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补集-symmetricDifference"><span class="nav-number">16.2.4.</span> <span class="nav-text">补集 symmetricDifference</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典"><span class="nav-number">16.3.</span> <span class="nav-text">字典</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制流"><span class="nav-number">17.</span> <span class="nav-text">控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in-循环"><span class="nav-number">17.1.</span> <span class="nav-text">for-in 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while-循环"><span class="nav-number">17.2.</span> <span class="nav-text">while 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的判断"><span class="nav-number">17.3.</span> <span class="nav-text">循环中的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch"><span class="nav-number">17.4.</span> <span class="nav-text">switch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">18.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义函数"><span class="nav-number">18.1.</span> <span class="nav-text">定义函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数和返回值：可以无参数无返回值"><span class="nav-number">18.2.</span> <span class="nav-text">参数和返回值：可以无参数无返回值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包-Closure"><span class="nav-number">19.</span> <span class="nav-text">闭包 Closure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包表达式"><span class="nav-number">19.1.</span> <span class="nav-text">闭包表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的自动推断"><span class="nav-number">19.2.</span> <span class="nav-text">闭包的自动推断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举-enumeration"><span class="nav-number">20.</span> <span class="nav-text">枚举 enumeration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义和使用"><span class="nav-number">20.1.</span> <span class="nav-text">定义和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附加值"><span class="nav-number">20.2.</span> <span class="nav-text">附加值</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">acswift</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
