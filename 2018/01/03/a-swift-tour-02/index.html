@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="面向对象-类和结构体 用生物学的角度把变量和函数有机组织起来，叫面向对象编程。   基因：属性 和 方法（变量和函数） 繁殖：完全克隆 和 基因交换（继承和变异） 术语：结构体（Struct） 和 类（Class），Swift 3 开始推荐自己定义的对象使用结构体。">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Swift Tour Part 02">
+<meta property="og:url" content="http://yoursite.com/2018/01/03/a-swift-tour-02/index.html">
+<meta property="og:site_name" content="ACSwift&#39;s Blog">
+<meta property="og:description" content="面向对象-类和结构体 用生物学的角度把变量和函数有机组织起来，叫面向对象编程。   基因：属性 和 方法（变量和函数） 繁殖：完全克隆 和 基因交换（继承和变异） 术语：结构体（Struct） 和 类（Class），Swift 3 开始推荐自己定义的对象使用结构体。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-03T08:39:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Swift Tour Part 02">
+<meta name="twitter:description" content="面向对象-类和结构体 用生物学的角度把变量和函数有机组织起来，叫面向对象编程。   基因：属性 和 方法（变量和函数） 繁殖：完全克隆 和 基因交换（继承和变异） 术语：结构体（Struct） 和 类（Class），Swift 3 开始推荐自己定义的对象使用结构体。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/03/a-swift-tour-02/"/>
+
+
+
+
+
+  <title>A Swift Tour Part 02 | ACSwift's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ACSwift's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/03/a-swift-tour-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ACSwift">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ACSwift's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">A Swift Tour Part 02</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T16:39:53+08:00">
+                2018-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="面向对象-类和结构体"><a href="#面向对象-类和结构体" class="headerlink" title="面向对象-类和结构体"></a>面向对象-类和结构体</h2><blockquote>
+<p>用生物学的角度把变量和函数有机组织起来，叫面向对象编程。</p>
+</blockquote>
+<ul>
+<li>基因：属性 和 方法（<strong>变量</strong>和<strong>函数</strong>）</li>
+<li>繁殖：完全克隆 和 基因交换（<strong>继承</strong>和<strong>变异</strong>）</li>
+<li>术语：<strong>结构体</strong>（Struct） 和 <strong>类</strong>（Class），Swift 3 开始推荐自己定义的对象使用结构体。</li>
+</ul>
+<a id="more"></a>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><ul>
+<li>属性是一个类/结构体/枚举关联的变量。</li>
+<li>实例属性：实例化后才能使用</li>
+<li>存储属性：保存单个类型的变量</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> 角色 </span>&#123;</div><div class="line">    <span class="keyword">var</span> id = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> money = <span class="number">0</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> xiaobo = 角色()</div><div class="line">xiaobo.id = <span class="string">"xiaobo"</span></div><div class="line">xiaobo.money = <span class="number">10000</span></div></pre></td></tr></table></figure>
+<ul>
+<li>计算属性：由其他属性计算得出的。由 <code>getter</code> 和 <code>setter</code> 组成</li>
+<li><code>getter</code> 获取器（必须）：描述属性如何计算及返回语句，形式：get { 语句和返回 }</li>
+<li><code>setter</code> 设置器（可选）：有新值（newValue）后如何影响其他属性，形式：set { 语句 }</li>
+<li>🌰：游戏角色的当前坐标，通常是移动方式代表的位移量相关</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Cocoa</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> 角色 </span>&#123;</div><div class="line">    <span class="keyword">var</span> id = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> money = <span class="number">0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> 坐标 </span>&#123;</div><div class="line">    <span class="keyword">var</span> x = <span class="number">0</span>, y = <span class="number">0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">enum</span> 移动方式 </span>&#123;</div><div class="line">    <span class="keyword">case</span> 走</div><div class="line">    <span class="keyword">case</span> 跑</div><div class="line">    <span class="keyword">case</span> 骑</div><div class="line">    <span class="keyword">case</span> 传送</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> 法师: 角色 </span>&#123;</div><div class="line">    <span class="keyword">var</span> 人物坐标 = 坐标()</div><div class="line">    <span class="keyword">var</span> 人物移动方式 = 移动方式.走</div><div class="line">    <span class="keyword">var</span> 当前坐标: 坐标 &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="keyword">switch</span> 人物移动方式 &#123;</div><div class="line">            <span class="keyword">case</span> .走:</div><div class="line">                人物坐标.x += <span class="number">1</span></div><div class="line">                人物坐标.y += <span class="number">1</span></div><div class="line">            <span class="keyword">case</span> .跑:</div><div class="line">                人物坐标.x += <span class="number">3</span></div><div class="line">                人物坐标.y += <span class="number">3</span></div><div class="line">            <span class="keyword">case</span> .骑:</div><div class="line">                人物坐标.x += <span class="number">10</span></div><div class="line">                人物坐标.y += <span class="number">10</span></div><div class="line">            <span class="keyword">case</span> .传送:</div><div class="line">                人物坐标.x += <span class="number">1000</span></div><div class="line">                人物坐标.y += <span class="number">1000</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> 人物坐标</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">set</span> &#123;</div><div class="line">            人物坐标 = newValue</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> 法师<span class="number">1</span> = 法师()</div><div class="line">法师<span class="number">1</span>.当前坐标</div><div class="line"></div><div class="line">法师<span class="number">1</span>.人物移动方式 = .跑</div><div class="line">法师<span class="number">1</span>.当前坐标</div><div class="line"></div><div class="line">法师<span class="number">1</span>.人物移动方式 = .传送</div><div class="line">法师<span class="number">1</span>.当前坐标</div><div class="line"></div><div class="line"><span class="comment">// 计算属性的 setter 方法，影响其他属性</span></div><div class="line">法师<span class="number">1</span>.当前坐标 = 坐标(x: <span class="number">2000</span>, y: <span class="number">90</span>)</div><div class="line">法师<span class="number">1</span>.人物坐标</div></pre></td></tr></table></figure>
+<ul>
+<li>属性监视器：对属性值的变化进行响应</li>
+<li>willSet：事前响应。新值 <code>newValue</code></li>
+<li>didSet：事后响应。旧值 <code>oldValue</code></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> 经验 </span>&#123;</div><div class="line">    <span class="keyword">var</span> 总经验 = <span class="number">0</span> &#123;</div><div class="line">        <span class="keyword">willSet</span> &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"当前总经验值：<span class="subst">\(newValue)</span>！"</span>)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">didSet</span> &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"增加了<span class="subst">\(总经验 - oldValue)</span>点经验！"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> 经验<span class="number">1</span> = 经验()</div><div class="line">经验<span class="number">1</span>.总经验 = <span class="number">1000</span></div><div class="line">经验<span class="number">1</span>.总经验 = <span class="number">3000</span></div><div class="line">经验<span class="number">1</span>.总经验 = <span class="number">8000</span></div><div class="line"></div><div class="line"><span class="comment">//实验结果</span></div><div class="line"><span class="comment">//当前总经验值：1000！</span></div><div class="line"><span class="comment">//增加了1000点经验！</span></div><div class="line"><span class="comment">//当前总经验值：3000！</span></div><div class="line"><span class="comment">//增加了2000点经验！</span></div><div class="line"><span class="comment">//当前总经验值：8000！</span></div><div class="line"><span class="comment">//增加了5000点经验！</span></div></pre></td></tr></table></figure>
+<ul>
+<li>类型属性：属于类型固有的，实例不能调用</li>
+<li>对于类，计算型的类型属性，前面加关键字 <code>class</code> 可被子类重写（override）</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> 生命体 </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">var</span> 遗传方式: <span class="title">String</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"RNA"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">生命体.遗传方式</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span>: 生命体 </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="class"><span class="keyword">class</span> <span class="title">var</span> 遗传方式: <span class="title">String</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"DNA"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="type">Human</span>.遗传方式</div></pre></td></tr></table></figure>
+<ul>
+<li>结构体和枚举，关键字 <code>static</code></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> 逛街 </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> 试衣间 = <span class="string">"UNICLO"</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> 网站 = <span class="string">"http://www.taobao.com?cate="</span></div><div class="line">    <span class="keyword">var</span> cate = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> shareURL: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> 逛街.网站 + cate</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">逛街.试衣间</div><div class="line"><span class="keyword">let</span> 逛淘宝 = 逛街(cate: <span class="string">"seafood"</span>)</div><div class="line">逛淘宝.shareURL</div></pre></td></tr></table></figure>
+<h2 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h2><blockquote>
+<p>方法是一个类/结构体/枚举关联的函数，分为 <strong>实例方法</strong> 和 <strong>类型方法</strong></p>
+</blockquote>
+<ul>
+<li>实例方法</li>
+<li>定义和使用：与函数相似。<code>self</code> 属性：引用实例自身，通常可以不写</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Monster</span>: <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> sheep = <span class="number">10</span>,</div><div class="line">    cat = <span class="number">50</span>,</div><div class="line">    snake = <span class="number">100</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ExpTimes</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> <span class="keyword">open</span> = <span class="literal">false</span></div><div class="line">    <span class="keyword">var</span> times = <span class="number">1</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RmbPlayer</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> exp = <span class="number">0</span></div><div class="line">    <span class="keyword">var</span> expTimes = <span class="type">ExpTimes</span>()</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">idle</span><span class="params">()</span></span> &#123;</div><div class="line">        exp += <span class="number">500</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"挂机成功 1 次！总经验为<span class="subst">\(exp)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">kil</span><span class="params">(monster: Monster, expTimes: Int)</span></span> &#123;</div><div class="line">        exp += (monster.rawValue * expTimes)</div><div class="line">        <span class="built_in">print</span>(<span class="string">"当前总经验为<span class="subst">\(exp)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> xiaobo = <span class="type">RmbPlayer</span>()</div><div class="line">xiaobo.idle()</div><div class="line">xiaobo.kil(monster: <span class="type">Monster</span>.cat, expTimes: <span class="number">2</span>)</div><div class="line">xiaobo.expTimes.<span class="keyword">open</span> = <span class="literal">true</span></div><div class="line">xiaobo.expTimes.times = <span class="number">2</span></div><div class="line">xiaobo.kil(monster: <span class="type">Monster</span>.sheep, expTimes: <span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="keyword">var</span> dabo = <span class="type">RmbPlayer</span>()</div><div class="line">dabo.idle()</div><div class="line">dabo.kil(monster: <span class="type">Monster</span>.cat, expTimes: <span class="number">5</span>)</div><div class="line">dabo.expTimes.<span class="keyword">open</span> = <span class="literal">true</span></div><div class="line">dabo.expTimes.times = <span class="number">2</span></div><div class="line">dabo.kil(monster: <span class="type">Monster</span>.sheep, expTimes: <span class="number">5</span>)</div></pre></td></tr></table></figure>
+<h2 id="类型方法"><a href="#类型方法" class="headerlink" title="类型方法"></a>类型方法</h2><ul>
+<li>类型方法：属于类型本身，无需实例化就可以使用，方法前加关键字 <code>static</code></li>
+<li>对于类，加关键字 <code>class</code> ，可被子类重写（override）</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Player</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> nick = <span class="string">"xiaobo"</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">server</span>() </span>&#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(nick)</span>, 您在北京联通1区"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="type">Player</span>.server()</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShanghaiPlayer</span>: <span class="title">Player</span> </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">server</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(nick)</span>, 您在上海联通1区"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="type">ShanghaiPlayer</span>.server()</div></pre></td></tr></table></figure>
+<h2 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h2><blockquote>
+<p>下标是方法的一种，是访问集合、列表或者序列中的元素的快捷方式。用法：实例名[下标]。可以访问或设置其中元素。下标可以是多维或嵌套的。嵌套🌰：area[country][province][city][district][weekly]。多维：矩阵[2,2]，数组[1,2,3]</p>
+</blockquote>
+<ul>
+<li>定义形式：一个名为 <code>subscript</code> 的计算属性：可以忽略 set （只读）</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//    subscript(index: 参数类型) -&gt; 返回类型 &#123;</span></div><div class="line"><span class="comment">//        get &#123;&#125;</span></div><div class="line"><span class="comment">//        set &#123;&#125;</span></div><div class="line"><span class="comment">//    &#125;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>常见用法：字典、数组、集合等</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">array[<span class="number">2</span>]</div><div class="line"></div><div class="line"><span class="keyword">var</span> dict = [<span class="string">"name"</span>: <span class="string">"xiaobo"</span>, <span class="string">"verb"</span>: <span class="string">"say"</span>, <span class="string">"what"</span>: <span class="string">"Swift"</span>]</div><div class="line">dict[<span class="string">"what"</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>通过下标简化调用方法调用</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cycle</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">area</span><span class="params">(radius: Double)</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Double</span>.pi * pow(radius, <span class="number">2</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">subscript</span>(radius: <span class="type">Double</span>) -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Double</span>.pi * pow(radius, <span class="number">2</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> cycle = <span class="type">Cycle</span>()</div><div class="line">cycle.area(radius: <span class="number">3</span>)</div><div class="line">cycle[<span class="number">3</span>]</div></pre></td></tr></table></figure>
+<h2 id="继承：class-之间的“父子”关系的体现"><a href="#继承：class-之间的“父子”关系的体现" class="headerlink" title="继承：class 之间的“父子”关系的体现"></a>继承：class 之间的“父子”关系的体现</h2><ul>
+<li>子类可以继承父类的属性和方法</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Viechle</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> speed = <span class="number">0</span></div><div class="line">    <span class="keyword">var</span> desc: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"时速是 <span class="subst">\(speed)</span> km/h"</span></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span> &#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bike</span>: <span class="title">Viechle</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> hasBasket = <span class="literal">false</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> aBike = <span class="type">Bike</span>()</div><div class="line">aBike.speed = <span class="number">30</span></div><div class="line">aBike.desc</div><div class="line">aBike.hasBasket</div><div class="line">aBike.makeNoise()</div></pre></td></tr></table></figure>
+<ul>
+<li>子类可以根据需要修改继承来的属性和方法（多态）</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CRH</span>: <span class="title">Viechle</span> </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"dududu"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> crh = <span class="type">CRH</span>()</div><div class="line">crh.makeNoise()</div></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><blockquote>
+<p>初始化：描述类/结构体/枚举实例化时，属性如何给初始值的方法。形式：<code>init(){}</code> 。此方法称之为<strong>构造器</strong>。</p>
+</blockquote>
+<ul>
+<li>类的定义没有给属性默认值，则须在 <code>init</code> 中指定。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoomTemp</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> season: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> temp: <span class="type">Int</span></div><div class="line">    <span class="keyword">init</span>(season: <span class="type">String</span>, temp: <span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.season = season</div><div class="line">        <span class="keyword">self</span>.temp = temp</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> temp1 = <span class="type">RoomTemp</span>(season: <span class="string">"Spring"</span>, temp: <span class="number">20</span>)</div><div class="line">temp1.season</div><div class="line">temp1.temp</div></pre></td></tr></table></figure>
+<ul>
+<li>结构体定义不需要指定属性默认的值，因为默认提供一个包含所有属性初始化的构造器。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">RoomTemp1</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> season: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> temp: <span class="type">Int</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> temp2 = <span class="type">RoomTemp1</span>(season: <span class="string">"Summer"</span>, temp: <span class="number">30</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>便利构造器：可以通过对主构造器的包装，实现便利的初始化</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Food</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span></div><div class="line">    </div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>() &#123;</div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(name: <span class="string">"吃饭"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> food = <span class="type">Food</span>()</div></pre></td></tr></table></figure>
+<ul>
+<li>可失败构造器：针对有可能的初始化失败，返回 nil。🌰 初始化一张图片，如果图片不存在，则初始化失败。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Animal</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> name: <span class="type">String</span></div><div class="line">    </div><div class="line">    <span class="keyword">init</span>?(name: <span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">if</span> name.isEmpty &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"没有给动物命名！"</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">self</span>.name = name</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> cat = <span class="type">Animal</span>(name: <span class="string">""</span>)</div></pre></td></tr></table></figure>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><blockquote>
+<p>错误处理：反映运行出错的“细节”，并恢复程序的过程。</p>
+</blockquote>
+<ul>
+<li>可选类型仅处理值缺失，错误处理可以针对不同的出错原因</li>
+<li>一个函数可以加上 <code>throws</code> 关键字，表示可以处理错误。这个函数的调用者可以捕获（<code>catch</code>）这个错误并进行应对。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">aFoo</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"小波的斗鱼直播间 57621"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>当你调用时可以抛出错误的函数，须在前面加上 <code>try</code> 关键字</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> aFoo()</div></pre></td></tr></table></figure>
+<ul>
+<li>处理更细分的错误情况，错误类型须遵从 <code>Error</code> 协议</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">LearningObs</span>: <span class="title">Error</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> noMethod, noReading, noTool(tool: <span class="type">String</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">iosDev</span><span class="params">(method: Bool, style: Bool, hasTool: Bool)</span></span> <span class="keyword">throws</span> &#123;</div><div class="line">    <span class="keyword">guard</span> method <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">LearningObs</span>.noMethod</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">guard</span> style <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">LearningObs</span>.noReading</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">guard</span> hasTool <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">LearningObs</span>.noTool(tool: <span class="string">"缺 Mac 电脑"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> budget = <span class="number">7000</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">buy</span><span class="params">(tool: String)</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> budget &gt;= <span class="number">6000</span> &#123;</div><div class="line">        budget -= <span class="number">6000</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"您已经购买"</span>, tool, <span class="string">"花费 6000 元，余额："</span>, budget)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"资金不足"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">try</span> iosDev(method: <span class="literal">false</span>, style: <span class="literal">false</span>, hasTool: <span class="literal">false</span>)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="type">LearningObs</span>.noMethod &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"没有好的学习方法"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="type">LearningObs</span>.noReading &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"不想看书，就看视频吧"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="type">LearningObs</span>.noTool(<span class="keyword">let</span> tool) &#123;</div><div class="line">    buy(tool: <span class="string">"Mac"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>有时候仅关心结果有无，可使用 <code>try?</code> 或 <code>try!</code> 来忽略错误细节。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> result = <span class="keyword">try</span>? iosDev(method: <span class="literal">true</span>, style: <span class="literal">true</span>, hasTool: <span class="literal">false</span>) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"恭喜进入学习"</span>)</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"学习条件不满足！"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">try</span>! iosDev(method: <span class="literal">true</span>, style: <span class="literal">true</span>, hasTool: <span class="literal">false</span>)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/19/a-swift-tour/" rel="next" title="A Swift Tour Part 01">
+                <i class="fa fa-chevron-left"></i> A Swift Tour Part 01
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ACSwift</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/acswift" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象-类和结构体"><span class="nav-number">1.</span> <span class="nav-text">面向对象-类和结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">2.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例方法"><span class="nav-number">3.</span> <span class="nav-text">实例方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型方法"><span class="nav-number">4.</span> <span class="nav-text">类型方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下标"><span class="nav-number">5.</span> <span class="nav-text">下标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承：class-之间的“父子”关系的体现"><span class="nav-number">6.</span> <span class="nav-text">继承：class 之间的“父子”关系的体现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-number">7.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误处理"><span class="nav-number">8.</span> <span class="nav-text">错误处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ACSwift</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
