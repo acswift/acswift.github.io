@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  <title>A Swift Tour Part 01 | ACSwift&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.3.9">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
   <meta name="description" content="关于 Swift Swift 是一门为 iOS、OS X 以及 watchOS 应用开发而开发的构建于 C 和 Objective-C 的优点之上的新编程语言。">
 <meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
@@ -12,87 +64,222 @@
 <meta property="og:url" content="http://yoursite.com/2017/12/19/a-swift-tour/index.html">
 <meta property="og:site_name" content="ACSwift&#39;s Blog">
 <meta property="og:description" content="关于 Swift Swift 是一门为 iOS、OS X 以及 watchOS 应用开发而开发的构建于 C 和 Objective-C 的优点之上的新编程语言。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-18T17:32:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A Swift Tour Part 01">
 <meta name="twitter:description" content="关于 Swift Swift 是一门为 iOS、OS X 以及 watchOS 应用开发而开发的构建于 C 和 Objective-C 的优点之上的新编程语言。">
+  <link rel="canonical" href="http://yoursite.com/2017/12/19/a-swift-tour/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>A Swift Tour Part 01 | ACSwift's Blog</title>
   
-    <link rel="alternate" href="/atom.xml" title="ACSwift&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">ACSwift&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Stay Hungry, Stay Foolish.</a>
-        </h2>
-      
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ACSwift's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-a-swift-tour" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/12/19/a-swift-tour/" class="article-date">
-  <time datetime="2017-12-18T17:32:02.000Z" itemprop="datePublished">2017-12-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编程/">编程</a>
+        <p class="site-subtitle">Stay Hungry, Stay Foolish.</p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      A Swift Tour Part 01
-    </h1>
-  
+</div>
 
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+    </ul>
+    
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/a-swift-tour/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ACSwift">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ACSwift's Blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">A Swift Tour Part 01
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-19 01:32:02" itemprop="dateCreated datePublished" datetime="2017-12-19T01:32:02+08:00">2017-12-19</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br/>
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <h2 id="关于-Swift"><a href="#关于-Swift" class="headerlink" title="关于 Swift"></a>关于 Swift</h2><blockquote>
 <p>Swift 是一门为 iOS、OS X 以及 watchOS 应用开发而开发的构建于 C 和 Objective-C 的优点之上的新编程语言。</p>
@@ -422,145 +609,259 @@
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> 精确天气 </span>&#123;</div><div class="line">    <span class="keyword">case</span> 晴(<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">String</span>)</div><div class="line">    <span class="keyword">case</span> 霾(<span class="type">String</span>, <span class="type">Int</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> 上海今日精确天气 = 精确天气.霾(<span class="string">"PM10"</span>, <span class="number">100</span>)</div><div class="line"><span class="keyword">let</span> 北京今日精确天气 = 精确天气.晴(<span class="number">30</span>, <span class="number">50</span>, <span class="string">"湛蓝"</span>)</div><div class="line"></div><div class="line"><span class="keyword">switch</span> 北京今日精确天气 &#123;</div><div class="line"><span class="keyword">case</span> .晴(<span class="keyword">let</span> uvi, <span class="keyword">let</span> li, <span class="keyword">let</span> desc):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"紫外线指数："</span>, uvi, <span class="string">"晾晒指数："</span>, li, <span class="string">"天蓝程度："</span>, desc)</div><div class="line"><span class="keyword">case</span> .霾(<span class="keyword">let</span> cat, <span class="keyword">let</span> index):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"雾霾颗粒类别："</span>, cat, <span class="string">"指数"</span>, index)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/19/a-swift-tour/" data-id="cjyogponv000783protyywt67" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li></ul>
 
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2017/09/28/about-this-blog/" rel="next" title="关于这篇博客的搭建">
+                <i class="fa fa-chevron-left"></i> 关于这篇博客的搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2018/01/03/a-swift-tour-02/" rel="prev" title="A Swift Tour Part 02">
+                A Swift Tour Part 02 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2018/01/03/a-swift-tour-02/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ACSwift</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
         
-          A Swift Tour Part 02
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-Swift"><span class="nav-number">1.</span> <span class="nav-text">关于 Swift</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本兼容性"><span class="nav-number">2.</span> <span class="nav-text">版本兼容性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-world"><span class="nav-number">3.</span> <span class="nav-text">Hello, world!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">4.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量的定义"><span class="nav-number">4.1.</span> <span class="nav-text">常量的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量赋值"><span class="nav-number">4.2.</span> <span class="nav-text">常量赋值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">5.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码注释"><span class="nav-number">6.</span> <span class="nav-text">代码注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何正确使用常量与变量？"><span class="nav-number">7.</span> <span class="nav-text">如何正确使用常量与变量？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值的类型和类型推断"><span class="nav-number">8.</span> <span class="nav-text">值的类型和类型推断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点型（小数）"><span class="nav-number">9.</span> <span class="nav-text">浮点型（小数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型安全"><span class="nav-number">10.</span> <span class="nav-text">类型安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔型：Bool-表示逻辑上的真或假"><span class="nav-number">11.</span> <span class="nav-text">布尔型：Bool, 表示逻辑上的真或假</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元组（Tuple）：定义变量的一个组合"><span class="nav-number">12.</span> <span class="nav-text">元组（Tuple）：定义变量的一个组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选类型（Optional）：代表变量可能有值的情况"><span class="nav-number">13.</span> <span class="nav-text">可选类型（Optional）：代表变量可能有值的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础操作符"><span class="nav-number">14.</span> <span class="nav-text">基础操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串和字符"><span class="nav-number">15.</span> <span class="nav-text">字符串和字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">15.1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符"><span class="nav-number">15.2.</span> <span class="nav-text">字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接字符串和字符"><span class="nav-number">15.3.</span> <span class="nav-text">连接字符串和字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串插值：组合常量-变量-字面量-表达式成一个长字符串"><span class="nav-number">15.4.</span> <span class="nav-text">字符串插值：组合常量/变量/字面量/表达式成一个长字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合类型"><span class="nav-number">16.</span> <span class="nav-text">集合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">16.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合"><span class="nav-number">16.2.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交集-intersection"><span class="nav-number">16.2.1.</span> <span class="nav-text">交集 intersection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#差集-subtract"><span class="nav-number">16.2.2.</span> <span class="nav-text">差集 subtract</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并集-uninon"><span class="nav-number">16.2.3.</span> <span class="nav-text">并集 uninon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补集-symmetricDifference"><span class="nav-number">16.2.4.</span> <span class="nav-text">补集 symmetricDifference</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典"><span class="nav-number">16.3.</span> <span class="nav-text">字典</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制流"><span class="nav-number">17.</span> <span class="nav-text">控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in-循环"><span class="nav-number">17.1.</span> <span class="nav-text">for-in 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while-循环"><span class="nav-number">17.2.</span> <span class="nav-text">while 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的判断"><span class="nav-number">17.3.</span> <span class="nav-text">循环中的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch"><span class="nav-number">17.4.</span> <span class="nav-text">switch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">18.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义函数"><span class="nav-number">18.1.</span> <span class="nav-text">定义函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数和返回值：可以无参数无返回值"><span class="nav-number">18.2.</span> <span class="nav-text">参数和返回值：可以无参数无返回值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包-Closure"><span class="nav-number">19.</span> <span class="nav-text">闭包 Closure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包表达式"><span class="nav-number">19.1.</span> <span class="nav-text">闭包表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的自动推断"><span class="nav-number">19.2.</span> <span class="nav-text">闭包的自动推断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举-enumeration"><span class="nav-number">20.</span> <span class="nav-text">枚举 enumeration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义和使用"><span class="nav-number">20.1.</span> <span class="nav-text">定义和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附加值"><span class="nav-number">20.2.</span> <span class="nav-text">附加值</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ACSwift</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.3.9</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
+
+        
+
+
+
+
+
+
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2017/09/28/about-this-blog/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">关于这篇博客的搭建</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/Swift/" style="font-size: 20px;">Swift</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/07/28/关于 Ruby/">关于 Ruby</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/28/iOS_Dev_1/">iOS_Dev_Notes_01</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/03/a-swift-tour-02/">A Swift Tour Part 02</a>
-          </li>
-        
-          <li>
-            <a href="/2017/12/19/a-swift-tour/">A Swift Tour Part 01</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/28/about-this-blog/">关于这篇博客的搭建</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 ACSwift<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
   </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
